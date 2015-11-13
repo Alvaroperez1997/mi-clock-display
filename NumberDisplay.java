@@ -39,7 +39,15 @@ public class NumberDisplay
     public String getDisplayValue()
     {
         String displayDevuelve = "";
-        displayDevuelve = display + "";
+        displayDevuelve = "0" + display;
         return displayDevuelve;
+    }
+    
+    /**
+     * Un método que devuelve el valor actual del display como entero
+     */
+    public int getValue()
+    {
+        return display;
     }
 }
