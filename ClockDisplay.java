@@ -22,7 +22,7 @@ public class ClockDisplay
         // initialise instance variables
         int horas = 00;
         int minutos = 00;
-        horaActual = horas + ":" + minutos;
+        horaActual = "0"+horas + ":" + "0"+minutos;
     }
     
      /**
@@ -30,6 +30,50 @@ public class ClockDisplay
      */
     public ClockDisplay(int horas, int minutos)
     {
-        horaActual = horas + ":" + minutos;
+        if(horas < 10 && minutos < 10)  {
+            horaActual = "0"+horas + ":" + "0"+minutos;
+        }
+        else if( horas >= 10 && minutos < 10) {
+            horaActual = horas + ":" + "0"+minutos;
+        }
+        else if(horas < 10 && minutos >=10)  {
+            horaActual = "0"+horas + ":" + minutos;
+        }
+        else  {
+            horaActual = horas + ":" + minutos;
+        }
     }
+    
+    /**
+     * Metodo que fija la hora que quieras
+     */
+    public void setTime (int valorHoras,int valorMinutos)
+    {
+        int horas = valorHoras;
+        int minutos = valorMinutos;
+        if(horas < 10 && minutos < 10)  {
+            horaActual = "0"+horas + ":" + "0"+minutos;
+        }
+        else if( horas >= 10 && minutos < 10) {
+            horaActual = horas + ":" + "0"+minutos;
+        }
+        else if(horas < 10 && minutos >=10)  {
+            horaActual = "0"+horas + ":" + minutos;
+        }
+        else  {
+            horaActual = horas + ":" + minutos;
+        }
+    }
+    
+    /**
+     * Metodo que te devuelve la hora
+     */
+    public String getTime()
+    {
+        return horaActual;
+    }
+    
+    /**
+     * 
+     */
 }
