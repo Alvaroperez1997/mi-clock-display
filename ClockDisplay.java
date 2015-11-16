@@ -74,6 +74,26 @@ public class ClockDisplay
     }
     
     /**
-     * 
+     * Metodo que avanza 1 minuto la hora actual
      */
+    public void timeTick()
+    {
+        int minutos = minutos + 1;
+        int horas = horas + 0;
+        if(horas == 24 && minutos == 60)  {
+            horas = 00;
+            minutos = 00;
+        }
+        else if(horas <= 23 && minutos == 60)  {
+            horas ++;
+            minutos = 00;
+        }
+        else if(horas == 24 && minutos <= 59)  {
+            horas = 00;
+            minutos ++;
+        }
+        else  {
+            minutos ++;
+        }
+    }
 }
