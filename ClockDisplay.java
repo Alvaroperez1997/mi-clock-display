@@ -1,99 +1,65 @@
-
-/**
- * Write a description of class ClockDisplay here.
- * 
+/** 
  * @author (your name) 
  * @version (a version number or a date)
  */
 public class ClockDisplay
 {
-    // Atributo que almacena las horas
+    // Guarda la hora
     private NumberDisplay horas;
-    // Atributo que almacena los minutos
+    // Guarda los minutos
     private NumberDisplay minutos;
-    // Atributo que almacena la hora actual con 5 caracteres
+    // Almacena la hora actual con 5 caracteres
     private String horaActual;
 
     /**
-     * Constructor for objects of class ClockDisplay
+     * Crea un objeto ClockDisplay con hora por defecto 00:00
      */
     public ClockDisplay()
     {
-        // initialise instance variables
-        int horas = 00;
-        int minutos = 00;
-        horaActual = "0"+horas + ":" + "0"+minutos;
+        horas = new NumberDisplay(12);
+        minutos = new NumberDisplay(60);
+        horaActual = horas.getDisplayValue() + ":" + minutos.getDisplayValue();             
     }
     
-     /**
-     * Constructor for objects of class ClockDisplay
+    /** 
+     * Crea un objeto ClockDisplay con la hora y los minutos dados
      */
-    public ClockDisplay(int horas, int minutos)
+    public ClockDisplay (int horasX, int minutosX)
     {
-        if(horas < 10 && minutos < 10)  {
-            horaActual = "0"+horas + ":" + "0"+minutos;
-        }
-        else if( horas >= 10 && minutos < 10) {
-            horaActual = horas + ":" + "0"+minutos;
-        }
-        else if(horas < 10 && minutos >=10)  {
-            horaActual = "0"+horas + ":" + minutos;
-        }
-        else  {
-            horaActual = horas + ":" + minutos;
-        }
+        horas = new NumberDisplay(12);
+        minutos = new NumberDisplay(60);    
+        horas.setValue(horasX); 
+        minutos.setValue(minutosX);
+        horaActual = horas.getDisplayValue() + ":" + minutos.getDisplayValue() + "a.m.";        
     }
     
     /**
-     * Metodo que fija la hora que quieras
+     * Fija la hora del reloj a la hora y los minutos dados
      */
-    public void setTime (int valorHoras,int valorMinutos)
+    public void setTime(int horaY, int minutoY)
     {
-        int horas = valorHoras;
-        int minutos = valorMinutos;
-        if(horas < 10 && minutos < 10)  {
-            horaActual = "0"+horas + ":" + "0"+minutos;
-        }
-        else if( horas >= 10 && minutos < 10) {
-            horaActual = horas + ":" + "0"+minutos;
-        }
-        else if(horas < 10 && minutos >=10)  {
-            horaActual = "0"+horas + ":" + minutos;
-        }
-        else  {
-            horaActual = horas + ":" + minutos;
-        }
+        horas.setValue(horaY);  
+        minutos.setValue(minutoY);
+        horaActual = horas.getDisplayValue() + ":" + minutos.getDisplayValue() + " a.m.";
     }
     
     /**
-     * Metodo que te devuelve la hora
+     * Devuelve la hora del reloj como una cadena de 5 caracteres
      */
-    public String getTime()
-    {
+     public String getTime()
+     {
         return horaActual;
-    }
-    
+     }
+     
     /**
-     * Metodo que avanza 1 minuto la hora actual
+     * Hace avanzar la hora 1 minuto
      */
     public void timeTick()
     {
-        int minutos = minutos + 1;
-        int horas = horas + 0;
-        if(horas == 24 && minutos == 60)  {
-            horas = 00;
-            minutos = 00;
-        }
-        else if(horas <= 23 && minutos == 60)  {
-            horas ++;
-            minutos = 00;
-        }
-        else if(horas == 24 && minutos <= 59)  {
-            horas = 00;
-            minutos ++;
-        }
-        else  {
-            minutos ++;
+        minutos.increment();
+        if ( minutos.getValue() == 0) {
+            horas.increment();
         }
     }
 }
+
